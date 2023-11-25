@@ -15,7 +15,14 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    public List<Category> getCategories(){
+    public List<Category> getCategories() {
         return categoryRepository.findAll();
     }
+
+    public List<Category> getCategorieesByDescriptionAndNativeQuery(String description) {
+        return categoryRepository.findTurkishCategoriesInDescriptionByNativeQuery(description);
+    }
+
+
+
 }
