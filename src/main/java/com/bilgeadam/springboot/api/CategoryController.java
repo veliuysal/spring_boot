@@ -47,4 +47,15 @@ public class CategoryController {
         return categoryService.updateCategory(category);
     }
 
+    @DeleteMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public String deleteCategory(@RequestParam("id") Integer id) throws Exception {
+        categoryService.deleteCategory(id);
+        return "Silme İşlemi Başarılı.";
+    }
+
+    @DeleteMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String deleteCategoryInPath(@PathVariable("id") Integer id) throws Exception {
+        categoryService.deleteCategory(id);
+        return "Silme İşlemi Başarılı.";
+    }
 }

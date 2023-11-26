@@ -42,4 +42,8 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
+    public void deleteCategory(Integer id) throws Exception {
+        categoryRepository.deleteById(id);
+    }
+
 }
