@@ -37,4 +37,14 @@ public class CategoryController {
         return categoryService.getCategorieesByDescriptionAndNativeQuery(description);
     }
 
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Category saveCategory(@RequestBody Category category) {
+        return categoryService.saveCategory(category);
+    }
+
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Category updateCategory(@RequestBody Category category) throws Exception {
+        return categoryService.updateCategory(category);
+    }
+
 }

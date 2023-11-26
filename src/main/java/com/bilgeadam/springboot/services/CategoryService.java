@@ -5,6 +5,8 @@ import com.bilgeadam.springboot.repositories.CategoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -23,6 +25,21 @@ public class CategoryService {
         return categoryRepository.findTurkishCategoriesInDescriptionByNativeQuery(description);
     }
 
+    public Category saveCategory(Category category) {
+        Integer idValue = categoryRepository.getMaxId() + 1;
+        category.setId(idValue);
+        return categoryRepository.save(category);
+    }
 
+    public Category updateCategory(Category category) throws Exception {
+        if (Objects.isNull(category.getId())) {
+            throw new Exception("ID boş bırakılamaz");
+        }
+        Optional<Category> optCategory = categoryRepository.findById(category.getId());
+        if (optCategory.isEmpty()) {
+            throw new Exception("ID alanı yanlış");
+        }
+        return categoryRepository.save(category);
+    }
 
 }

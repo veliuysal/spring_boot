@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
@@ -18,4 +19,9 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
 
     @Query(value = "SELECT c.* FROM Categories c WHERE c.description LIKE %:description%", nativeQuery = true)
     List<Category> findTurkishCategoriesInDescriptionByNativeQuery(@Param("description") String description);
+
+    @Query(value = "SELECT MAX(c.id) FROM Category c")
+    Integer getMaxId();
+
+    Optional<Category> findById(Integer id);
 }
