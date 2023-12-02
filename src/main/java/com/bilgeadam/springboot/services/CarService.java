@@ -41,4 +41,8 @@ public class CarService {
         return carRepository.save(car);
     }
 
+    public void deleteCategory(Integer id) throws Exception {
+        carRepository.deleteById(id);
+    }
+
 }

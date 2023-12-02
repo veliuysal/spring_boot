@@ -41,4 +41,10 @@ public class CarController {
     public Car updateCar(@RequestBody Car car) throws Exception {
         return carService.updateCar(car);
     }
+
+    @DeleteMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String deleteCategoryInPath(@PathVariable("id") Integer id) throws Exception {
+        carService.deleteCategory(id);
+        return "Silme İşlemi Başarılı.";
+    }
 }
