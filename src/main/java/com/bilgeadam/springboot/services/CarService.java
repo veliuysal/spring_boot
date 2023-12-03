@@ -28,7 +28,7 @@ public class CarService {
     public Car saveCar(Car car) throws Exception {
         Optional<Car> optCar = carRepository.findByYearAndBrandAndModel(car.getYear(), car.getBrand(), car.getModel());
         if (optCar.isPresent()) {
-            throw new Exception("Bu kayıt var");
+            throw new Exception("Bu kayıt var. Aman dikkat!");
         }
         Integer idValue = carRepository.getMaxId() + 1;
         car.setId(idValue);
