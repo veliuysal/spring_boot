@@ -3,6 +3,7 @@ package com.bilgeadam.springboot.api;
 import com.bilgeadam.springboot.models.Car;
 import com.bilgeadam.springboot.services.CarService;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,8 +34,13 @@ public class CarController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Car saveCar(@RequestBody Car car) {
-        return carService.saveCar(car);
+    public ResponseEntity<?> saveCar(@RequestBody Car car) throws Exception {
+        try {
+            Car saved = carService.saveCar(car);
+            return ResponseEntity.ok(saved);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
