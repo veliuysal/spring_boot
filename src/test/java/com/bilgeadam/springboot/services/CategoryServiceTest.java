@@ -1,4 +1,4 @@
-package com.bilgeadam.springboot.api.services;
+package com.bilgeadam.springboot.services;
 
 import com.bilgeadam.springboot.repositories.CategoryRepository;
 import com.bilgeadam.springboot.services.CategoryService;
