@@ -66,4 +66,20 @@ public class CategoryControllerTest {
         Assertions.assertEquals(1, categories.size(), "Kategoriler 1 tane gelmedi");
     }
 
+    @Test
+    public void getCategoriesByNativeQuery() {
+        Category category = new Category();
+        category.setDescription("Geliyor Gelmekte Olan");
+        category.setName("Hallederiz");
+        category.setId(11);
+
+        List<Category> list = new ArrayList<>();
+        list.add(category);
+
+        Mockito.when(categoryController.getCategoriesByNativeQuery("Geliyor Gelmekte Olan")).thenReturn(list);
+        List<Category> categories = categoryController.getCategoriesByNativeQuery("Geliyor Gelmekte Olan");
+        Assertions.assertEquals(1, categories.size(), "Kategoriler 1 tane gelmedi");
+        Assertions.assertEquals("Geliyor Gelmekte Olan", categories.get(0).getDescription(), "Description yanlış");
+    }
+
 }
